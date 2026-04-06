@@ -1,0 +1,5 @@
+MYSQL_HOST = "172.21.0.1"
+MYSQL_USER = "root"
+MYSQL_PASSWORD = "Progamer123!!!"
+MYSQL_DB ="iot_sentinel"
+SECRET_KEY ="utf8mb4"
