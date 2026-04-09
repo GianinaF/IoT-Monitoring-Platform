@@ -3,7 +3,44 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Welcome to the IoT Monitoring Platform</h1>
-<p>This is the home page of our Flask project.</p>
+ <section class="cards">
+      <div class="card">
+        <h3>Total Devices</h3>
+        <p id="totalDevices">0</p>
+      </div>
+      <div class="card">
+        <h3>Online Devices</h3>
+        <p id="onlineDevices">0</p>
+      </div>
+      <div class="card">
+        <h3>Total Alerts</h3>
+        <p id="totalAlerts">0</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Recent Devices</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody id="deviceTableBody"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Device Data Chart</h2>
+      <canvas id="deviceChart"></canvas>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+
 <a href="{{ url_for('login') }}">Go to Login</a>
 {% endblock %}
