@@ -10,6 +10,10 @@
     <nav>
         <a href="{{ url_for('index') }}">Home</a>
 
+        <a href="index.html">Dashboard</a>
+      <a href="devices.html">Devices</a>
+      <a href="alerts.html">Alerts</a>
+
         {% if session.get('username') %}
             {% if session.get('role') == 'admin' %}
                 <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
