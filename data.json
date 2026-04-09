@@ -1,0 +1,11 @@
+{
+  "devices": [
+    { "id": 1, "name": "Temperature Sensor 1", "type": "Temperature", "status": "online", "value": 28 },
+    { "id": 2, "name": "Humidity Sensor 1", "type": "Humidity", "status": "offline", "value": 65 },
+    { "id": 3, "name": "Smart AC 1", "type": "AC Controller", "status": "online", "value": 22 }
+  ],
+  "alerts": [
+    { "id": 1, "device": "Temperature Sensor 1", "message": "High temperature detected", "time": "2026-03-22 10:30" },
+    { "id": 2, "device": "Humidity Sensor 1", "message": "Device offline", "time": "2026-03-22 10:45" }
+  ]
+}
