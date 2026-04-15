@@ -18,7 +18,40 @@ At this stage the application does not use a database. Authentication is impleme
 In Milestone 2, the application will be extended with a MySQL database.
 
 Τεχνολογίες / Technologies
+
 Python 
 java script
 HTML
 CSS
+
+Δομή Project / Project Structure
+
+IoT-Monitoring-Platform
+│
+├── app.py
+├── config.py
+├── requirements.txt
+├── .gitignore
+│
+├── templates
+│   ├── alerts.html
+│   ├── base.html
+│   ├── index.html
+│   ├── login.html
+│   │
+│   ├── user
+│   │   └── dashboard.html
+│   │       └── devices.html
+│   │
+│   └── admin
+│       └── dashboard.html
+│        └── devices.html
+│
+└── static
+    ├── style.css
+    ├── script.js
+    └── data.json
+    └── image
+        └── alerts-bg.jpg
+        └── devices.bg
+        └── iot-bg.jpg
