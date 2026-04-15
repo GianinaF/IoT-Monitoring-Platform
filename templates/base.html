@@ -7,25 +7,29 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <nav>
-        <a href="{{ url_for('index') }}">Home</a>
+    <header>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
 
-        <a href="index.html">Dashboard</a>
-      <a href="devices.html">Devices</a>
-      <a href="alerts.html">Alerts</a>
-
-        {% if session.get('username') %}
-            {% if session.get('role') == 'admin' %}
-                <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
-            {% else %}
-                <a href="{{ url_for('user_dashboard') }}">User Dashboard</a>
+            {% if session.get('username') %}
+                <a href="{{ url_for('alerts') }}">Alerts</a>
             {% endif %}
 
-            <a href="{{ url_for('logout') }}">Logout</a>
-        {% else %}
-            <a href="{{ url_for('login') }}">Login</a>
-        {% endif %}
-    </nav>
+            {% if session.get('username') %}
+                {% if session.get('role') == 'admin' %}
+                    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+                    <a href="{{ url_for('admin_devices') }}">Devices</a>
+                {% else %}
+                    <a href="{{ url_for('user_dashboard') }}">User Dashboard</a>
+                    <a href="{{ url_for('user_devices') }}">Devices</a>
+                {% endif %}
+
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
 
     <main>
         {% block content %}{% endblock %}
@@ -34,5 +38,8 @@
     <footer>
         <p>Milestone 1</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

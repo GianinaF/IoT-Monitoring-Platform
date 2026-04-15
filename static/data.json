@@ -1,0 +1,41 @@
+{
+  "devices": [
+    {
+      "id": 1,
+      "name": "Temp Sensor 1",
+      "type": "Temperature",
+      "status": "online",
+      "value": 25
+    },
+    {
+      "id": 2,
+      "name": "Humidity Sensor",
+      "type": "Humidity",
+      "status": "offline",
+      "value": 60
+    },
+    {
+      "id": 3,
+      "name": "Motion Sensor",
+      "type": "Motion",
+      "status": "online",
+      "value": 1
+    }
+  ],
+  "alerts": [
+    {
+      "id": 1,
+      "device": "Temp Sensor 1",
+      "message": "High temperature",
+      "time": "2026-04-15 12:00"
+    },
+    {
+      "id": 2,
+      "device": "Humidity Sensor",
+      "message": "Sensor offline",
+      "time": "2026-04-15 12:05"
+    }
+  ]
+  
+
+}

@@ -58,6 +58,30 @@ def admin_dashboard():
         return redirect(url_for('login'))
 
     return render_template('admin/dashboard.html', username=session.get('username'))
+@app.route('/user/devices')
+def user_devices():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if session.get('role') != 'user':
+        return redirect(url_for('login'))
+
+    return render_template('user/devices.html', username=session.get('username'))
+
+@app.route('/admin/devices')
+def admin_devices():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if session.get('role') != 'admin':
+        return redirect(url_for('login'))
+
+    return render_template('admin/devices.html', username=session.get('username'))
+
+@app.route('/alerts')
+def alerts():
+    return render_template('alerts.html')
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+   app.run(host='0.0.0.0', port=5000, debug=True)
