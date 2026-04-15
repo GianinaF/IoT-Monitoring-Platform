@@ -55,3 +55,14 @@ IoT-Monitoring-Platform
         └── alerts-bg.jpg
         └── devices.bg
         └── iot-bg.jpg
+
+
+Routes της εφαρμογής / Application Routes
+
+Route	Method	Description
+/	GET	Homepage / Αρχική σελίδα
+/login	GET	Login form
+/login	POST	Verify credentials
+/logout	GET	Logout user
+/user/dashboard	GET	User dashboard (protected)
+/admin/dashboard	GET	Admin dashboard (protected)
