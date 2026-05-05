@@ -6,39 +6,175 @@
     <title>{% block title %}IoT Project{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <header>
-        <nav>
-            <a href="{{ url_for('index') }}">Home</a>
 
-            {% if session.get('username') %}
-                <a href="{{ url_for('alerts') }}">Alerts</a>
-            {% endif %}
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+
+    <!-- Penrose Background -->
+    <div class="penrose-bg-wrapper">
+        {% include 'penrose.html' %}
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <a href="{{ url_for('index') }}" class="navbar-brand">
+                <div class="logo-icon"></div>
+                <span class="brand-text">IoT Monitor</span>
+            </a>
+
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a href="{{ url_for('index') }}" class="nav-link active">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ url_for('alerts') }}" class="nav-link">Alerts</a>
+                </li>
+
+                {% if session.get('username') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li class="nav-item">
+                            <a href="{{ url_for('admin_dashboard') }}" class="nav-link">Admin Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url_for('admin_devices') }}" class="nav-link">Devices</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{{ url_for('user_dashboard') }}" class="nav-link">User Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url_for('user_devices') }}" class="nav-link">Devices</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a href="{{ url_for('logout') }}" class="cta-button">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{{ url_for('login') }}" class="cta-button">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <button class="mobile-toggle" id="mobileToggle" type="button">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="{{ url_for('index') }}" class="mobile-menu-brand">
+                <div class="logo-icon"></div>
+                <span class="brand-text">IoT Monitor</span>
+            </a>
+
+            <button class="mobile-menu-close" id="mobileMenuClose" type="button">
+                <span>×</span>
+            </button>
+        </div>
+
+        <ul class="mobile-menu-nav">
+            <li class="mobile-menu-item">
+                <a href="{{ url_for('index') }}" class="mobile-menu-link active">Home</a>
+            </li>
+
+            <li class="mobile-menu-item">
+                <a href="{{ url_for('alerts') }}" class="mobile-menu-link">Alerts</a>
+            </li>
 
             {% if session.get('username') %}
                 {% if session.get('role') == 'admin' %}
-                    <a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
-                    <a href="{{ url_for('admin_devices') }}">Devices</a>
+                    <li class="mobile-menu-item">
+                        <a href="{{ url_for('admin_dashboard') }}" class="mobile-menu-link">Admin Dashboard</a>
+                    </li>
+
+                    <li class="mobile-menu-item">
+                        <a href="{{ url_for('admin_devices') }}" class="mobile-menu-link">Devices</a>
+                    </li>
                 {% else %}
-                    <a href="{{ url_for('user_dashboard') }}">User Dashboard</a>
-                    <a href="{{ url_for('user_devices') }}">Devices</a>
+                    <li class="mobile-menu-item">
+                        <a href="{{ url_for('user_dashboard') }}" class="mobile-menu-link">User Dashboard</a>
+                    </li>
+
+                    <li class="mobile-menu-item">
+                        <a href="{{ url_for('user_devices') }}" class="mobile-menu-link">Devices</a>
+                    </li>
                 {% endif %}
 
-                <a href="{{ url_for('logout') }}">Logout</a>
+                <li class="mobile-menu-item">
+                    <a href="{{ url_for('logout') }}" class="mobile-menu-link">Logout</a>
+                </li>
             {% else %}
-                <a href="{{ url_for('login') }}">Login</a>
+                <li class="mobile-menu-item">
+                    <a href="{{ url_for('login') }}" class="mobile-menu-link">Login</a>
+                </li>
             {% endif %}
-        </nav>
-    </header>
+        </ul>
+    </div>
 
-    <main>
+    <!-- Page Content -->
+    <main class="main-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>Milestone 1</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="{{ url_for('index') }}" class="footer-brand">
+                <div class="footer-logo"></div>
+                <span>IoT Monitor</span>
+            </a>
+
+            <ul class="footer-links">
+                <li><a href="{{ url_for('index') }}" class="footer-link">Home</a></li>
+                <li><a href="{{ url_for('alerts') }}" class="footer-link">Alerts</a></li>
+
+                {% if session.get('username') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li><a href="{{ url_for('admin_dashboard') }}" class="footer-link">Admin</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('user_dashboard') }}" class="footer-link">Dashboard</a></li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="footer-copy">
+            Milestone 1 — IoT Monitoring Platform
+        </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
