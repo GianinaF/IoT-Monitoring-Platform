@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}My Readings{% endblock %}
+
+{% block content %}
+<h2>My Sensor Readings</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Device</th>
+            <th>Sensor Type</th>
+            <th>Value</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Temperature Sensor 1</td>
+            <td>Temperature</td>
+            <td>25.5 °C</td>
+            <td>2026-04-15 12:00</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

@@ -82,6 +82,49 @@ def admin_devices():
 def alerts():
     return render_template('alerts.html')
 
+@app.route('/admin/readings')
+def admin_readings():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if session.get('role') != 'admin':
+        return redirect(url_for('login'))
+
+    return render_template('admin/readings.html', username=session.get('username'))
+
+
+@app.route('/user/readings')
+def user_readings():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if session.get('role') != 'user':
+        return redirect(url_for('login'))
+
+    return render_template('user/readings.html', username=session.get('username'))
+
+
+@app.route('/admin/devices/edit/<int:device_id>')
+def edit_device(device_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if session.get('role') != 'admin':
+        return redirect(url_for('login'))
+
+    return render_template('admin/edit_device.html', device_id=device_id)
+
+
+@app.route('/admin/readings/edit/<int:reading_id>')
+def edit_reading(reading_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    if session.get('role') != 'admin':
+        return redirect(url_for('login'))
+
+    return render_template('admin/edit_reading.html', reading_id=reading_id)
+
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port=5000, debug=True)

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Reading{% endblock %}
+
+{% block content %}
+<h2>Edit Sensor Reading</h2>
+
+<form method="POST" action="#">
+    <label>Sensor</label>
+    <select name="sensor_id" required>
+        <option value="1" selected>Temperature Sensor</option>
+        <option value="2">Humidity Sensor</option>
+    </select>
+
+    <label>Value</label>
+    <input type="number" step="0.01" name="value" value="25.5" required>
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<br>
+
+<a class="btn" href="{{ url_for('admin_readings') }}">Back to Readings</a>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Device{% endblock %}
+
+{% block content %}
+<h2>Edit Device</h2>
+
+<form method="POST" action="#">
+    <label>Device Name</label>
+    <input type="text" name="name" value="Temperature Sensor 1" required>
+
+    <label>Device Type</label>
+    <input type="text" name="type" value="Temperature" required>
+
+    <label>Status</label>
+    <select name="status" required>
+        <option value="online" selected>Online</option>
+        <option value="offline">Offline</option>
+    </select>
+
+    <button type="submit">Save Changes</button>
+</form>
+
+<br>
+
+<a class="btn" href="{{ url_for('admin_devices') }}">Back to Devices</a>
+{% endblock %}

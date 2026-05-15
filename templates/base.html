@@ -33,10 +33,6 @@
                     <a href="{{ url_for('index') }}" class="nav-link active">Home</a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ url_for('alerts') }}" class="nav-link">Alerts</a>
-                </li>
-
                 {% if session.get('username') %}
                     {% if session.get('role') == 'admin' %}
                         <li class="nav-item">
@@ -46,6 +42,13 @@
                         <li class="nav-item">
                             <a href="{{ url_for('admin_devices') }}" class="nav-link">Devices</a>
                         </li>
+                         <li class="nav-item">
+                            <a href="{{ url_for('alerts') }}" class="nav-link">Alerts</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ url_for('admin_readings') }}" class="nav-link">Readings</a>
+                        </li>
                     {% else %}
                         <li class="nav-item">
                             <a href="{{ url_for('user_dashboard') }}" class="nav-link">User Dashboard</a>
@@ -53,6 +56,12 @@
 
                         <li class="nav-item">
                             <a href="{{ url_for('user_devices') }}" class="nav-link">Devices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('user_readings') }}" class="nav-link">Readings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('alerts') }}" class="nav-link">Alerts</a>
                         </li>
                     {% endif %}
 
@@ -97,10 +106,6 @@
                 <a href="{{ url_for('index') }}" class="mobile-menu-link active">Home</a>
             </li>
 
-            <li class="mobile-menu-item">
-                <a href="{{ url_for('alerts') }}" class="mobile-menu-link">Alerts</a>
-            </li>
-
             {% if session.get('username') %}
                 {% if session.get('role') == 'admin' %}
                     <li class="mobile-menu-item">
@@ -110,6 +115,12 @@
                     <li class="mobile-menu-item">
                         <a href="{{ url_for('admin_devices') }}" class="mobile-menu-link">Devices</a>
                     </li>
+                    <li class="mobile-menu-item">
+                        <a href="{{ url_for('admin_readings') }}" class="mobile-menu-link">Readings</a>
+                    </li>
+                    <li class="mobile-menu-item">
+                        <a href="{{ url_for('alerts') }}" class="mobile-menu-link">Alerts</a>
+                    </li>
                 {% else %}
                     <li class="mobile-menu-item">
                         <a href="{{ url_for('user_dashboard') }}" class="mobile-menu-link">User Dashboard</a>
@@ -117,6 +128,12 @@
 
                     <li class="mobile-menu-item">
                         <a href="{{ url_for('user_devices') }}" class="mobile-menu-link">Devices</a>
+                    </li>
+                    <li class="mobile-menu-item">
+                        <a href="{{ url_for('user_readings') }}" class="mobile-menu-link">Readings</a>
+                    </li>
+                    <li class="mobile-menu-item">
+                        <a href="{{ url_for('alerts') }}" class="mobile-menu-link">Alerts</a>
                     </li>
                 {% endif %}
 
@@ -156,8 +173,6 @@
 
             <ul class="footer-links">
                 <li><a href="{{ url_for('index') }}" class="footer-link">Home</a></li>
-                <li><a href="{{ url_for('alerts') }}" class="footer-link">Alerts</a></li>
-
                 {% if session.get('username') %}
                     {% if session.get('role') == 'admin' %}
                         <li><a href="{{ url_for('admin_dashboard') }}" class="footer-link">Admin</a></li>
@@ -169,7 +184,7 @@
         </div>
 
         <div class="footer-copy">
-            Milestone 1 — IoT Monitoring Platform
+            IoT Monitoring Platform
         </div>
     </footer>
 
