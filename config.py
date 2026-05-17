@@ -1,5 +1,10 @@
-MYSQL_HOST = "172.21.0.1"
-MYSQL_USER = "root"
-MYSQL_PASSWORD = "Progamer123!!!"
-MYSQL_DB ="iot_sentinel"
-SECRET_KEY ="utf8mb4"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DB_HOST = os.getenv("DB_HOST")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_NAME = os.getenv("DB_NAME")
+SECRET_KEY = os.getenv("SECRET_KEY", "defaultsecretkey")
