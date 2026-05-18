@@ -1,8 +1,60 @@
 {% extends 'base.html' %}
+
 {% block title %}User Dashboard{% endblock %}
 
 {% block content %}
 <h1>User Dashboard</h1>
 <p>Welcome, {{ username }}!</p>
-<p>This is the user dashboard.</p>
+<p>Overview of your assigned IoT devices and recent activity.</p>
+
+<section class="cards">
+    <div class="card">
+        <h3>My Devices</h3>
+        <p>{{ total_devices }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Online Devices</h3>
+        <p>{{ online_devices }}</p>
+    </div>
+
+    <div class="card">
+        <h3>My Alerts</h3>
+        <p>{{ total_alerts }}</p>
+    </div>
+</section>
+
+<section>
+    <h2>My Recent Devices</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for device in devices %}
+            <tr>
+                <td>{{ device.name }}</td>
+                <td>{{ device.type }}</td>
+                <td>{{ device.location }}</td>
+                <td class="{{ device.status }}">{{ device.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>Quick Actions</h2>
+
+    <a class="btn" href="{{ url_for('user_devices') }}">View My Devices</a>
+    <a class="btn" href="{{ url_for('user_readings') }}">View My Readings</a>
+    <a class="btn" href="{{ url_for('alerts') }}">View Alerts</a>
+</section>
 {% endblock %}

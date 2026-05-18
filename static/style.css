@@ -682,3 +682,57 @@ canvas {
         margin-top: 28px;
     }
 }
+
+.hero {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 28px;
+    padding: 50px 35px;
+    margin-bottom: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.6rem;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 720px;
+    margin: 0 auto 25px;
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+}
+/* Fix select dropdown options */
+select {
+    color: white;
+}
+
+select option {
+    background: #24102f;
+    color: white;
+}
+
+select option:hover,
+select option:checked {
+    background: #e248a0;
+    color: white;
+}
+
+.inline-delete-form {
+    display: inline;
+    background: none ;
+    backdrop-filter: none ;
+    -webkit-backdrop-filter: none ;
+    border: none ;
+    box-shadow: none;
+    padding: 11px 18px ;
+    margin: 0 ;
+    max-width: none ;
+    font-weight: 600;
+    padding: 11px 18px;
+
+}

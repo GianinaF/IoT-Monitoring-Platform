@@ -3,54 +3,66 @@
 {% block title %}Sensor Readings{% endblock %}
 
 {% block content %}
-<h2>Sensor Readings</h2>
-
+<h1>Sensor Readings</h1>
+<p>Recent sensor readings from all IoT devices.</p>
 <section>
-    <h3>Add New Reading</h3>
+    <h2>Add New Reading</h2>
 
-    <form method="POST" action="#">
+    <form method="POST" action="{{ url_for('create_reading') }}" onsubmit="return validateReadingForm();">
         <label>Sensor</label>
         <select name="sensor_id" required>
             <option value="">Select sensor</option>
-            <option value="1">Temperature Sensor</option>
-            <option value="2">Humidity Sensor</option>
+            {% for sensor in sensors %}
+                <option value="{{ sensor.sensor_id }}">
+                    {{ sensor.device_name }} - {{ sensor.sensor_name }} ({{ sensor.location }})
+                </option>
+            {% endfor %}
         </select>
 
         <label>Value</label>
-        <input type="number" step="0.01" name="value" placeholder="Enter value" required>
+        <input type="number" step="0.01" name="value" placeholder="Enter reading value" required>
 
         <button type="submit">Add Reading</button>
     </form>
 </section>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Device</th>
+            <th>Location</th>
+            <th>Sensor</th>
+            <th>Value</th>
+            <th>Recorded At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
 
-<section>
-    <h3>All Readings</h3>
+    <tbody>
+        {% for reading in readings %}
+        <tr>
+            <td>{{ reading.reading_id }}</td>
+            <td>{{ reading.device_name }}</td>
+            <td>{{ reading.location }}</td>
+            <td>{{ reading.sensor_name }}</td>
+            <td>{{ reading.value }} {{ reading.unit }}</td>
+            <td>{{ reading.recorded_at }}</td>
+            <td>
+            <a class="btn" href="{{ url_for('edit_reading', reading_id=reading.reading_id) }}">Edit</a>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Device</th>
-                <th>Sensor Type</th>
-                <th>Value</th>
-                <th>Time</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Temperature Sensor 1</td>
-                <td>Temperature</td>
-                <td>25.5 °C</td>
-                <td>2026-04-15 12:00</td>
-                <td>
-                    <a class="btn" href="{{ url_for('edit_reading', reading_id=1) }}">Edit</a>
-                    <button type="button" onclick="confirmDelete()">Delete</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
+            <form method="POST"
+          action="{{ url_for('delete_reading', reading_id=reading.reading_id) }}"
+          class="inline-delete-form"
+          onsubmit="return confirmDelete();">
+            <button type="submit">Delete</button>
+            </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="7">No readings found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

@@ -3,25 +3,36 @@
 {% block title %}My Readings{% endblock %}
 
 {% block content %}
-<h2>My Sensor Readings</h2>
+<h1>My Sensor Readings</h1>
+<p>Recent readings from your assigned IoT devices.</p>
 
 <table>
     <thead>
         <tr>
+            <th>ID</th>
             <th>Device</th>
-            <th>Sensor Type</th>
+            <th>Location</th>
+            <th>Sensor</th>
             <th>Value</th>
-            <th>Time</th>
+            <th>Recorded At</th>
         </tr>
     </thead>
 
     <tbody>
+        {% for reading in readings %}
         <tr>
-            <td>Temperature Sensor 1</td>
-            <td>Temperature</td>
-            <td>25.5 °C</td>
-            <td>2026-04-15 12:00</td>
+            <td>{{ reading.reading_id }}</td>
+            <td>{{ reading.device_name }}</td>
+            <td>{{ reading.location }}</td>
+            <td>{{ reading.sensor_name }}</td>
+            <td>{{ reading.value }} {{ reading.unit }}</td>
+            <td>{{ reading.recorded_at }}</td>
         </tr>
+        {% else %}
+        <tr>
+            <td colspan="6">No readings found.</td>
+        </tr>
+        {% endfor %}
     </tbody>
 </table>
 {% endblock %}

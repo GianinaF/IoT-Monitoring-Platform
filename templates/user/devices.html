@@ -1,24 +1,54 @@
 {% extends 'base.html' %}
 
-{% block title %}Devices{% endblock %}
+{% block title %}My Devices{% endblock %}
 
 {% block content %}
-    <section>
-      <h2>All Devices</h2>
-      <table>
-        <thead>
-          <tr>
+<h1>My Devices</h1>
+<p>Welcome, {{ username }}!</p>
+
+<section>
+    <h2>Add My Device</h2>
+
+    <form method="POST"
+          action="{{ url_for('create_user_device') }}"
+          onsubmit="return validateUserDeviceForm();">
+
+        <label>Device Name</label>
+        <input type="text" name="name" placeholder="Example: Bedroom Sensor" required>
+
+        <label>Device Type</label>
+        <input type="text" name="type" placeholder="Example: temperature, humidity, camera" required>
+
+        <label>Location</label>
+        <input type="text" name="location" placeholder="Example: Bedroom" required>
+
+        <button type="submit">Add Device</button>
+    </form>
+</section>
+
+<table>
+    <thead>
+        <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Type</th>
+            <th>Location</th>
             <th>Status</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody id="devicesPageTableBody"></tbody>
-      </table>
-    </section>
-  </main>
+            <th>Registered At</th>
+        </tr>
+    </thead>
 
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <tbody>
+        {% for device in devices %}
+        <tr>
+            <td>{{ device.device_id }}</td>
+            <td>{{ device.name }}</td>
+            <td>{{ device.type }}</td>
+            <td>{{ device.location }}</td>
+            <td class="{{ device.status }}">{{ device.status }}</td>
+            <td>{{ device.registered_at }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

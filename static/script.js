@@ -221,3 +221,84 @@ document.addEventListener('DOMContentLoaded', function () {
 function confirmDelete() {
     return confirm("Are you sure you want to delete this?");
 }
+
+function validateDeviceForm() {
+    const name = document.querySelector('input[name="name"]');
+    const type = document.querySelector('input[name="type"]');
+    const location = document.querySelector('input[name="location"]');
+    const user = document.querySelector('select[name="user_id"]');
+    const status = document.querySelector('select[name="status"]');
+
+    if (user && user.value === "") {
+        alert("Please select a user.");
+        return false;
+    }
+
+    if (name && name.value.trim().length < 2) {
+        alert("Device name must be at least 2 characters.");
+        return false;
+    }
+
+    if (type && type.value.trim().length < 2) {
+        alert("Device type must be at least 2 characters.");
+        return false;
+    }
+
+    if (location && location.value.trim().length < 2) {
+        alert("Location must be at least 2 characters.");
+        return false;
+    }
+
+    if (status && status.value === "") {
+        alert("Please select a status.");
+        return false;
+    }
+
+    return true;
+}
+
+
+function validateReadingForm() {
+    const sensor = document.querySelector('select[name="sensor_id"]');
+    const value = document.querySelector('input[name="value"]');
+
+    if (sensor && sensor.value === "") {
+        alert("Please select a sensor.");
+        return false;
+    }
+
+    if (value && value.value.trim() === "") {
+        alert("Please enter a reading value.");
+        return false;
+    }
+
+    if (isNaN(value.value)) {
+        alert("Reading value must be a number.");
+        return false;
+    }
+
+    return true;
+}
+
+function validateUserDeviceForm() {
+    const name = document.querySelector('input[name="name"]');
+    const type = document.querySelector('input[name="type"]');
+    const location = document.querySelector('input[name="location"]');
+
+    if (name && name.value.trim().length < 2) {
+        alert("Device name must be at least 2 characters.");
+        return false;
+    }
+
+    if (type && type.value.trim().length < 2) {
+        alert("Device type must be at least 2 characters.");
+        return false;
+    }
+
+    if (location && location.value.trim().length < 2) {
+        alert("Location must be at least 2 characters.");
+        return false;
+    }
+
+    return true;
+}

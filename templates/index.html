@@ -3,39 +3,47 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<section class="hero">
+    <h1>IoT Monitoring Platform</h1>
+
+    <p>
+        A Flask-based web application for monitoring IoT devices,
+        sensor readings, alerts, and system activity.
+    </p>
+
+    {% if session.get('username') %}
+        {% if session.get('role') == 'admin' %}
+            <a class="btn" href="{{ url_for('admin_dashboard') }}">Go to Admin Dashboard</a>
+        {% else %}
+            <a class="btn" href="{{ url_for('user_dashboard') }}">Go to User Dashboard</a>
+        {% endif %}
+    {% else %}
+        <a class="btn" href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+</section>
+
 <section class="cards">
     <div class="card">
-        <h3>Total Devices</h3>
-        <p id="totalDevices">0</p>
+        <h3>Device Monitoring</h3>
+        <p>Track device status, type, and values.</p>
     </div>
+
     <div class="card">
-        <h3>Online Devices</h3>
-        <p id="onlineDevices">0</p>
+        <h3>Sensor Readings</h3>
+        <p>View readings from IoT sensors in the system.</p>
     </div>
+
     <div class="card">
-        <h3>Total Alerts</h3>
-        <p id="totalAlerts">0</p>
+        <h3>Alerts</h3>
+        <p>Monitor system alerts and device warnings.</p>
     </div>
 </section>
 
 <section>
-    <h2>Recent Devices</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody id="deviceTableBody"></tbody>
-    </table>
+    <h2>About the System</h2>
+    <p>
+        The platform supports admin and user roles. Admins can manage system data,
+        while users can view their assigned devices and readings.
+    </p>
 </section>
-
-<section>
-    <h2>Device Data Chart</h2>
-    <canvas id="deviceChart"></canvas>
-</section>
-
 {% endblock %}

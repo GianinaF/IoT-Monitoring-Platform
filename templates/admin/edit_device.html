@@ -3,19 +3,34 @@
 {% block title %}Edit Device{% endblock %}
 
 {% block content %}
-<h2>Edit Device</h2>
+<h1>Edit Device</h1>
+<p>Update the selected IoT device information.</p>
 
-<form method="POST" action="#">
+<form method="POST" action="{{ url_for('edit_device', device_id=device.device_id) }}" onsubmit="return validateDeviceForm();">
+    <label>Assign to User</label>
+    <select name="user_id" required>
+        {% for user in users %}
+            <option value="{{ user.user_id }}"
+                {% if user.user_id == device.user_id %}selected{% endif %}>
+                {{ user.username }}
+            </option>
+        {% endfor %}
+    </select>
+
     <label>Device Name</label>
-    <input type="text" name="name" value="Temperature Sensor 1" required>
+    <input type="text" name="name" value="{{ device.name }}" required>
 
     <label>Device Type</label>
-    <input type="text" name="type" value="Temperature" required>
+    <input type="text" name="type" value="{{ device.type }}" required>
+
+    <label>Location</label>
+    <input type="text" name="location" value="{{ device.location }}" required>
 
     <label>Status</label>
     <select name="status" required>
-        <option value="online" selected>Online</option>
-        <option value="offline">Offline</option>
+        <option value="online" {% if device.status == 'online' %}selected{% endif %}>Online</option>
+        <option value="offline" {% if device.status == 'offline' %}selected{% endif %}>Offline</option>
+        <option value="maintenance" {% if device.status == 'maintenance' %}selected{% endif %}>Maintenance</option>
     </select>
 
     <button type="submit">Save Changes</button>
