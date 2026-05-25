@@ -1,175 +1,109 @@
 # IoT Monitoring Platform
 
-A Flask-based web application for monitoring IoT devices.
+# IoT Monitoring Platform
+
+## Περιγραφή Έργου
+
+Το **IoT Monitoring Platform** αποτελεί μια εργασία πανεπιστημιακού επιπέδου με σκοπό την ανάπτυξη μιας πλατφόρμας παρακολούθησης συσκευών Internet of Things (IoT).
+
+Η πλατφόρμα συλλέγει, επεξεργάζεται και αποθηκεύει δεδομένα από IoT συσκευές ή αισθητήρες, χρησιμοποιώντας Python, APIs και βάση δεδομένων για τη διαχείριση και παρακολούθηση των πληροφοριών σε πραγματικό χρόνο.
+
+Η εργασία επικεντρώνεται στην επικοινωνία μεταξύ συσκευών, backend υπηρεσιών και συστημάτων αποθήκευσης δεδομένων, προσομοιώνοντας ένα ολοκληρωμένο IoT περιβάλλον.
 
 ---
 
-# 📚 Table of Contents
+## Λειτουργίες Συστήματος
 
-* [Project Description](#-project-description)
-* [Technologies](#-technologies)
-* [Project Structure](#-project-structure)
-* [Application Routes](#-application-routes)
-* [Login Credentials](#-login-credentials)
-* [Installation](#-installation)
-* [How to Run](#-how-to-run)
-* [Future Improvements](#-future-improvements)
-* [Contributors](#-contributors)
+* Παρακολούθηση IoT συσκευών και αισθητήρων
+* Συλλογή και επεξεργασία δεδομένων
+* Επικοινωνία μέσω REST APIs
+* Αποθήκευση δεδομένων σε βάση δεδομένων
+* Backend υπηρεσίες σε Python
+* Καταγραφή και διαχείριση μετρήσεων
+* Δομημένη αρχιτεκτονική για μελλοντική επέκταση
 
 ---
 
-# 📖 Project Description
+## Τεχνολογίες που Χρησιμοποιήθηκαν
 
-This project implements the **Milestone 1** requirements of a Flask web application.
-
-The goal is to build a **functional Flask skeleton** that includes:
-
-* Proper project structure
-* Flask routing
-* Templates with Jinja
-* Session-based authentication
-* Role-based dashboards (Admin / User)
-
-For this milestone **no database is used**. Authentication uses **hardcoded credentials**.
-
-Database integration with **MySQL will be added in Milestone 2**.
+* **Python**
+* **REST APIs**
+* **JSON**
+* **SQLite / MySQL**
+* **Git & GitHub**
 
 ---
 
-# 🛠 Technologies
+## Δομή Project
 
-* Python 
-* HTML5
-* CSS
-  
----
-
-# 📂 Project Structure
-
-```
-IoT-Monitoring-Platform
+```bash
+IoT-Monitoring-Platform/
 │
-├── app.py
-├── config.py
-├── requirements.txt
-├── .gitignore
-│
-├── templates
-│   ├── base.html
-│   ├── index.html
-│   ├── login.html
-│   │
-│   ├── user
-│   │   └── dashboard.html
-│   │
-│   └── admin
-│       └── dashboard.html
-│
-└── static
-    ├── style.css
-    ├── images
-    └── js
+├── api/                # API endpoints και backend λειτουργίες
+├── database/           # Βάση δεδομένων και σχετικά αρχεία
+├── monitoring/         # Scripts παρακολούθησης και επεξεργασίας
+├── sensors/            # Προσομοίωση αισθητήρων / IoT συσκευών
+├── requirements.txt    # Python dependencies
+└── README.md
 ```
 
 ---
 
-# 🔗 Application Routes
+## Τρόπος Λειτουργίας
 
-| Route              | Method | Description        |
-| ------------------ | ------ | ------------------ |
-| `/`                | GET    | Homepage           |
-| `/login`           | GET    | Login form         |
-| `/login`           | POST   | Verify credentials |
-| `/logout`          | GET    | Logout user        |
-| `/user/dashboard`  | GET    | User dashboard     |
-| `/admin/dashboard` | GET    | Admin dashboard    |
-
-Protected routes require authentication.
+1. Οι IoT συσκευές ή οι προσομοιωμένοι αισθητήρες παράγουν δεδομένα.
+2. Οι backend υπηρεσίες λαμβάνουν και επεξεργάζονται τις πληροφορίες.
+3. Τα APIs διαχειρίζονται την επικοινωνία μεταξύ των επιμέρους συστημάτων.
+4. Τα δεδομένα αποθηκεύονται στη βάση δεδομένων για παρακολούθηση και καταγραφή.
+5. Η πλατφόρμα μπορεί να επεκταθεί με επιπλέον δυνατότητες και υπηρεσίες.
 
 ---
 
-# 🔑 Login Credentials
+## Εγκατάσταση
 
-### Admin
+### Clone του Repository
 
-```
-username: admin
-password: admin123
-```
-
-### User
-
-```
-username: user
-password: user123
-```
-
-After login:
-
-* Admin → `/admin/dashboard`
-* User → `/user/dashboard`
-
----
-
-# ⚙ Installation
-
-Clone the repository:
-
-```
-git clone https://github.com/YOUR_USERNAME/IoT-Monitoring-Platform.git
-```
-
-Navigate into the folder:
-
-```
+```bash
+git clone https://github.com/GianinaF/IoT-Monitoring-Platform.git
 cd IoT-Monitoring-Platform
 ```
 
-Create virtual environment:
+### Εγκατάσταση Dependencies
 
-```
-python3 -m venv venv
-```
-
-Activate environment:
-
-Linux / Mac
-
-```
-source venv/bin/activate
-```
-
-Windows
-
-```
-venv\Scripts\activate
-```
-
-Install dependencies:
-
-```
+```bash
 pip install -r requirements.txt
 ```
 
----
+### Εκτέλεση Εφαρμογής
 
-# ▶ How to Run
-
-Run the Flask application:
-
-```
-python app.py
-```
-
-Open browser:
-
-```
-http://localhost:5000
+```bash
+python main.py
 ```
 
 ---
 
+## Εκπαιδευτικός Σκοπός
+
+Η εργασία δημιουργήθηκε για εκπαιδευτικούς σκοπούς με στόχο την κατανόηση:
+
+* της αρχιτεκτονικής IoT συστημάτων
+* της ανάπτυξης backend εφαρμογών
+* της χρήσης APIs
+* της διαχείρισης βάσεων δεδομένων
+* της επικοινωνίας μεταξύ διαφορετικών συστημάτων
+
 ---
+
+## Μελλοντικές Βελτιώσεις
+
+* Υποστήριξη MQTT πρωτοκόλλου
+* Real-time dashboard παρακολούθησης
+* Cloud deployment
+* Σύστημα ειδοποιήσεων και alerts
+* Ανάλυση και στατιστικά δεδομένων
+
+---
+
 
 # 👥 Contributors
 
