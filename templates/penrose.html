@@ -1,0 +1,68 @@
+<svg class="penrose-svg" width="502" height="480" viewBox="0 0 502 480" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="penrose-grad-main" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3ef5f0"/>
+            <stop offset="50%" stop-color="#e248a0"/>
+            <stop offset="100%" stop-color="#fcc8a0"/>
+        </linearGradient>
+
+        <linearGradient id="penrose-grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3ff6f0"/>
+            <stop offset="100%" stop-color="#39b9f6"/>
+        </linearGradient>
+
+        <linearGradient id="penrose-grad-pink" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f450aa"/>
+            <stop offset="100%" stop-color="#a32f80"/>
+        </linearGradient>
+
+        <linearGradient id="penrose-grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#543864"/>
+            <stop offset="100%" stop-color="#2f1f38"/>
+        </linearGradient>
+
+        <filter id="penrose-glow">
+            <feGaussianBlur stdDeviation="18" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <g filter="url(#penrose-glow)">
+        <path class="penrose-bg"
+              fill="url(#penrose-grad-main)"
+              opacity="0.65"
+              d="M232 40 L270 40 L462 374 L445 409 L57 409 L40 374 Z"/>
+
+        <path fill="url(#penrose-grad-blue)"
+              d="M232 40 L270 40 L100 339 L137 339 L365 339 L385 374 L40 374 Z"/>
+
+        <path fill="url(#penrose-grad-dark)"
+              d="M365 339 L251 141 L270 109 L445 409 L57 409 L40 374 L385 374 Z"/>
+
+        <path fill="url(#penrose-grad-pink)"
+              d="M137 339 L100 339 L270 42 L462 374 L445 409 L270 109 L251 141 Z"/>
+
+        <path fill="rgba(255,255,255,0.22)"
+              d="M251 141 L270 109 L335 221 L307 239 Z"/>
+
+        <path fill="rgba(62,245,240,0.22)"
+              d="M365 339 L385 374 L296 374 L296 339 Z"/>
+
+        <path fill="rgba(226,72,160,0.22)"
+              d="M100 339 L141 268 L168 285 L137 339 Z"/>
+    </g>
+
+    <g class="circle-spinner" data-origin="50% 50%">
+        <path fill="#aee9f9"
+              d="M370 344 L374 337 C384 317 389 296 389 275 C389 237 371 206 349 177 C314 142 266 138 266 138 L270 134 L281 126 L269 110 C324 113 368 158 395 192 C417 229 417 321 395 358 L376 363 Z"/>
+
+        <path fill="#fcc8a0"
+              d="M371 344 C362 359 349 372 349 372 C309 412 194 412 154 372 C141 359 132 344 132 344 L113 339 L108 358 C119 376 135 392 135 392 C183 440 320 440 368 392 C377 383 385 372 385 372 L366 375 L363 356 Z"/>
+
+        <path fill="#ffffff"
+              d="M108 358 C86 321 86 229 108 192 C119 174 135 158 135 158 C183 109 251 109 251 109 L265 123 L255 137 C194 137 154 177 154 177 C141 191 132 206 132 206 C114 237 114 305 125 331 L107 324 L100 342 Z"/>
+    </g>
+</svg>

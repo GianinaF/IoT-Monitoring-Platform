@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+<p>Welcome, {{ username }}!</p>
+<p>System overview for the IoT Monitoring Platform.</p>
+
+<section class="cards">
+    <div class="card">
+        <h3>Total Devices</h3>
+        <p>{{ total_devices }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Online Devices</h3>
+        <p>{{ online_devices }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Alerts</h3>
+        <p>{{ total_alerts }}</p>
+    </div>
+</section>
+
+<section>
+    <h2>Recent Devices</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Status</th>
+                <th>Assigned User</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for device in devices %}
+            <tr>
+                <td>{{ device.name }}</td>
+                <td>{{ device.type }}</td>
+                <td>{{ device.location }}</td>
+                <td class="{{ device.status }}">{{ device.status }}</td>
+                <td>{{ device.username }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>Quick Actions</h2>
+
+    <a class="btn" href="{{ url_for('admin_devices') }}">Manage Devices</a>
+    <a class="btn" href="{{ url_for('admin_readings') }}">Manage Readings</a>
+    <a class="btn" href="{{ url_for('alerts') }}">View Alerts</a>
+</section>
+{% endblock %}

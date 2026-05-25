@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Alerts{% endblock %}
+
+{% block content %}
+<h1>Alerts</h1>
+<p>System alerts generated from IoT sensor readings.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Device</th>
+            <th>Location</th>
+            <th>Sensor</th>
+            <th>Message</th>
+            <th>Severity</th>
+            <th>Status</th>
+            <th>Triggered At</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for alert in alerts %}
+        <tr>
+            <td>{{ alert.alert_id }}</td>
+            <td>{{ alert.device_name }}</td>
+            <td>{{ alert.location }}</td>
+            <td>{{ alert.sensor_name }}</td>
+            <td>{{ alert.message }}</td>
+            <td>{{ alert.severity }}</td>
+            <td>
+                {% if alert.is_read %}
+                    Read
+                {% else %}
+                    Unread
+                {% endif %}
+            </td>
+            <td>{{ alert.triggered_at }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="8">No alerts found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
