@@ -1,7 +1,5 @@
 # IoT Monitoring Platform
 
-# IoT Monitoring Platform
-
 ## Περιγραφή Έργου
 
 Το **IoT Monitoring Platform** αποτελεί μια εργασία πανεπιστημιακού επιπέδου με σκοπό την ανάπτυξη μιας πλατφόρμας παρακολούθησης συσκευών Internet of Things (IoT).
